@@ -1,7 +1,9 @@
-FROM alpine:latest
-MAINTAINER Thomas Willems <twillems@willtho.com>
+FROM arm32v6/alpine:latest
+MAINTAINER Esteban Laver
 
-RUN apk add --update \
+RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community/" >> /etc/apk/repositories && \
+    apk add --update --no-cache \
+    bash \
     avahi \
     samba-common-tools \
     samba-client \

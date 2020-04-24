@@ -15,10 +15,23 @@ if [ ! -d "/timemachine" ]; then
     mkdir "/timemachine"
 fi
 
+## tm-eml-mbp location
+if [ ! -d "/emlmbp" ]; then
+    mkdir "/emlmbp"
+fi
 
-chown -R ${TM_USER} "/timemachine"
+## shared location
+if [ ! -d "/shared" ]; then
+    mkdir "/shared"
+fi
+
+#chown -R ${TM_USER} "/timemachine"
 TM_SIZE=$(($TM_SIZE * 1000000))
 sed "s#REPLACE_TM_SIZE#${TM_SIZE}#" /tmp/template_quota > /timemachine/.com.apple.TimeMachine.quota.plist
+
+chown -R ${TM_USER} "/shared"
+##TM_SIZE=$(($TM_SIZE * 1000000))
+##sed "s#REPLACE_TM_SIZE#${TM_SIZE}#" /tmp/template_quota > /timemachine2/.com.apple.TimeMachine.quota.plist
 
 # run CMD
 exec "${@}"
